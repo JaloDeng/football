@@ -12,12 +12,12 @@ import com.jalo.football.repository.ClubRepository;
 public class ClubService {
 
 	@Autowired
-	private ClubRepository footballClubRepository;
+	private ClubRepository clubRepository;
 	
 	@Transactional(readOnly = true)
 	public Club findById(Long id) {
 		
-		ClubEntity entity = footballClubRepository.findOne(id);
+		ClubEntity entity = clubRepository.findOne(id);
 		
 		if (entity == null) {
 			return null;
@@ -46,7 +46,7 @@ public class ClubService {
 		entity.setName(model.getName());
 		entity.setBelong(model.getBelong());
 		
-		footballClubRepository.saveAndFlush(entity);
+		clubRepository.saveAndFlush(entity);
 		
 		return entity;
 	}

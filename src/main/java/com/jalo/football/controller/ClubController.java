@@ -18,12 +18,12 @@ import com.jalo.football.service.ClubService;
 public class ClubController {
 
 	@Autowired
-	private ClubService footballClubService;
+	private ClubService clubService;
 	
 	@GetMapping("/{id}")
 	public @ResponseBody Club findOne(@PathVariable Long id) throws Exception {
 		
-		Club model = footballClubService.findById(id);
+		Club model = clubService.findById(id);
 		
 		if (model == null) {
 			throw new Exception(String.format("FootballClub with ID %s not found.", id));
@@ -35,7 +35,7 @@ public class ClubController {
 	@PostMapping("/create")
 	public String create(@ModelAttribute Club club) {
 
-		ClubEntity entity = footballClubService.convert(club);
+		ClubEntity entity = clubService.convert(club);
 		
 		return "redirect:/club/" + entity.getId();
 	}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CREATE</title>
+<link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12" align="center">
+			<h3 class="text-center">
+				新增
+			</h3>
+			<form class="form-horizontal" action="club/create" method="post">
+				<div class="control-group">
+					<label class="control-label" for="name">俱乐部</label>
+					<div class="controls">
+						<input id="name" name="name" type="text" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="belong">所属联赛</label>
+					<div class="controls">
+						<input id="belong" name="belong" type="text" />
+					</div><br>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						 <button class="btn btn-success" type="submit" class="btn">确认</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

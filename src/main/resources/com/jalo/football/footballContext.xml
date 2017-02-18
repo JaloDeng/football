@@ -47,8 +47,18 @@
 		<property name="alwaysUseFullPath" value="true" />
 	</bean>
 
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/image/" mapping="/image/**" />
+
 	<mvc:annotation-driven>
 		<mvc:path-matching path-helper="fullPathUrlPathHelper" />
 	</mvc:annotation-driven>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".html" />
+	</bean>
 
 </beans>
