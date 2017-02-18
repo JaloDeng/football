@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `club`;
+CREATE TABLE `club` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '自增编码',
+	`name` VARCHAR(150) NOT NULL COMMENT '俱乐部名称',
+	`belong` VARCHAR(150) NOT NULL COMMENT '所属联赛',
+	PRIMARY KEY (`id`),
+ 	UNIQUE KEY `club_name_UNIQUE` (`name`) USING BTREE,
+	KEY `club_belong_idx` (`belong`) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='俱乐部'
+;
