@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SEARCH</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet prefetch' href='http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<h3 class="text-center">
+				球队信息
+			</h3><br>
+			<div class="form-search" align="center">
+				<input class="input-medium search-query" id="id" type="text" />
+				<button type="submit" class="btn">查找</button>
+			</div><br>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th style="text-align: center;">球队编号</th>
+						<th style="text-align: center;">球队名称</th>
+						<th style="text-align: center;">所属联赛</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="id" align="center"></td>
+						<td class="name" align="center"></td>
+						<td class="belong" align="center"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(".btn").click(function() {
+		var id = $("#id").val();
+		if (id) {
+			$.ajax({
+				url: "club/" + $("#id").val(),
+				type:'GET',
+				dataType: 'json',
+				success: function(result) {
+				  $(".id").html(result.id);
+				  $(".name").html(result.name);
+				  $(".belong").html(result.belong);
+				}
+			});
+		}
+	});
+</script>
+</body>
+</html>
