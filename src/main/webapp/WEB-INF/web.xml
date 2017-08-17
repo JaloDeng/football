@@ -34,7 +34,6 @@
 		<servlet-name>football</servlet-name>
 		<url-pattern>/club</url-pattern>
 		<url-pattern>/club/*</url-pattern>
-		<url-pattern>/club/information/*</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
