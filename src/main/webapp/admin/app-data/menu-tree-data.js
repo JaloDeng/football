@@ -11,7 +11,7 @@ function(){
 				size: 0,
 				permissions: 'drwxrwxr-x+',
 				children: [
-					{ text: 'Adobe Fireworks CS6', modified: '7/25/2011', size: 34052, permissions: 'drwxrwxr-x@', leaf: true, action: 'App.view.football.DemoYaUxp' },
+					{ text: 'Adobe Fireworks CS6', modified: '7/25/2011', size: 34052, permissions: 'drwxrwxr-x@', leaf: true, action: 'App.view.football.ClubGrid' },
 					{ text: 'Ext Js', modified: '12/13/2012', size: 3592, permissions: 'drwxr-xr-x', leaf: true },
 					{ text: 'Mail.app', modified: '9/27/2012', size: 1024, permissions: 'drwxr-xr-x', leaf: true }
 				]
