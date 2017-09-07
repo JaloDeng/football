@@ -6,6 +6,7 @@ function(){
 			{
 				text: 'Applications',
 				expanded: true,
+				icon: '../img/red_gallerylink.gif',
 				modified: '1/15/2012',
 				size: 0,
 				permissions: 'drwxrwxr-x+',
