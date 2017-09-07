@@ -225,7 +225,7 @@ return{
 					style:"color:#FFF;margin-left:8px;font:700 20px/20px 'Microsoft YaHei',Arial"
 				},{flex:1},{xtype:'button',text:'&#12297;&#160;\u8bf7\u60a8\u767b\u5f55',style:'margin-right:8px',menu:[{text:'\u6ce8\u518c'
 							,handler:function(){
-								ExtApp.uxOpenToTab({data:{action:'App.view.moduleya.DemoYaUxp',leaf:true,text:'\u7ba1\u7406'}})
+								ExtApp.uxOpenToTab({data:{action:'App.view.football.DemoYaUxp',leaf:true,text:'\u7ba1\u7406'}})
 							}
 
 						}]}
@@ -236,7 +236,7 @@ return{
 				{dock:'top',xtype:'toolbar',items:[
 					' - \u6b22\u8fce\u4f7f\u7528 - '
 					,{xtype:'button',text:'Welcome!',handler:function(){
-							ExtApp.uxOpenWindow('App.view.moduleya.DemoYaUxw',this.uxOwner,{title:'\u6b22\u8fce111'});
+							ExtApp.uxOpenWindow('App.view.football.DemoYaUxw',this.uxOwner,{title:'\u6b22\u8fce111'});
 							}
 						,listeners:{boxready:function(bn){bn.uxOwner=Ext.getCmp('AppViewportPanelBody').down('#AppViewportPanelBodyWelcome')}}
 						}

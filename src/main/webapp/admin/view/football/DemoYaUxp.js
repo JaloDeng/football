@@ -1,6 +1,6 @@
 !function(def,initCmpFn){
 	def({
-		ns:'App.view.moduleya.DemoYaUxp'
+		ns:'App.view.football.DemoYaUxp'
 		,inc:['App.view.DateTimeUxp','App.view.ColorUxp','App.view.YearMonthUxp']
 		,fn:initCmpFn
 	});

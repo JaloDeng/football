@@ -1,7 +1,7 @@
 !function(def,initCmpFn){
 	def({
-		ns:'App.view.moduleya.DemoYaUxw'
-		,inc:['App.view.moduleya.DemoYaUxp']
+		ns:'App.view.football.DemoYaUxw'
+		,inc:['App.view.football.DemoYaUxp']
 		,fn:initCmpFn
 		,w:1
 	});
@@ -32,7 +32,7 @@ function(me) {
 			,onShow:onShowMe
 		});
 		config.header.items=headButtons;
-		pushItems(config.items,[xitem('App.view.moduleya.DemoYaUxp',{uxWindow:me,uxDontClose:true})]);
+		pushItems(config.items,[xitem('App.view.football.DemoYaUxp',{uxWindow:me,uxDontClose:true})]);
 		return config
 	}
 
