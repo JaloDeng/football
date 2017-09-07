@@ -1,6 +1,10 @@
 package com.jalo.football.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +17,24 @@ public class ClubService {
 
 	@Autowired
 	private ClubRepository clubRepository;
+	
+	@Transactional(readOnly = true)
+	public List<Club> findAll(Integer page, Integer size) {
+		
+		List<Club> modelList = new ArrayList<>();
+		
+		clubRepository.findAll(new PageRequest(page - 1, size)).forEach(entityList -> {
+			Club model = new Club();
+			
+			model.setId(entityList.getId());
+			model.setName(entityList.getName());
+			model.setBelong(entityList.getBelong());
+			
+			modelList.add(model);
+		});
+		
+		return modelList;
+	}
 	
 	@Transactional(readOnly = true)
 	public Club findById(Long id) {
