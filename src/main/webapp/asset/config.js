@@ -6,10 +6,10 @@
 	;
 
 	//请修改为具体项目文件夹必需带末尾斜杠
-	ExtApp['APP_HTTP_PREFIX']='/fsqtsc/';
+	ExtApp['APP_HTTP_PREFIX']='/football/';
 
 	//请修改为具体项目显示标题
-	ExtApp['APP_CAPTION']='佛山质安培训业务管理系统';
+	ExtApp['APP_CAPTION']='足球俱乐部管理系统';
 
 	//具体项目采用不同的验证码参数；--&noise=red
 	ExtApp['CAPTCHA_IMAGE_URL']=ExtApp['APP_HTTP_PREFIX']+'./security/captcha?width=200&height=50&producer=number&length=5';
