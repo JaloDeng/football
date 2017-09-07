@@ -1,7 +1,9 @@
 package com.jalo.football.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,8 +21,9 @@ public class ClubService {
 	private ClubRepository clubRepository;
 	
 	@Transactional(readOnly = true)
-	public List<Club> findAll(Integer page, Integer size) {
+	public Map<String, Object> findAll(Integer page, Integer size) {
 		
+		Map<String, Object> returnMap = new HashMap<>();
 		List<Club> modelList = new ArrayList<>();
 		
 		clubRepository.findAll(new PageRequest(page - 1, size)).forEach(entityList -> {
@@ -33,7 +36,10 @@ public class ClubService {
 			modelList.add(model);
 		});
 		
-		return modelList;
+		returnMap.put("items", modelList);
+		returnMap.put("total", clubRepository.count());
+		
+		return returnMap;
 	}
 	
 	@Transactional(readOnly = true)

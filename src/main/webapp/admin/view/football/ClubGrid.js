@@ -38,6 +38,56 @@ function(me) {
 		});
 		pushItems(config.items,[xitem('grid',{
 			itemId:'clubGrid',
+			dockedItems: [
+				{
+					xtype: 'toolbar', 
+					dock: 'bottom', 
+					items: [
+						{xtype: 'button', text: '＜＜', handler: function(){
+							if (ioParam.page > 1) {
+								ioParam.page = 1;
+								ExtApp.ajax('../club?page='+ioParam.page+'&size='+ioParam.size,null,'GET',function(args){
+									var da=Ext.decode(args[2].responseText,true);
+									ExtApp.storeBy('club',null,da.items);
+									me.down('#currentPage').setValue(ioParam.page);
+								});
+							}
+						}}
+						,{xtype: 'button', text: '＜', handler: function(){
+							if (ioParam.page > 1) {
+								ioParam.page = ioParam.page - 1;
+								ExtApp.ajax('../club?page='+ioParam.page+'&size='+ioParam.size,null,'GET',function(args){
+									var da=Ext.decode(args[2].responseText,true);
+									ExtApp.storeBy('club',null,da.items);
+									me.down('#currentPage').setValue(ioParam.page);
+								});
+							}
+						}}
+						,{xtype: 'numberfield', itemId: 'currentPage'}
+						,{xtype: 'button', text: '＞', handler: function(){
+							if (ioParam.page < ioParam.totalPage){
+								ioParam.page = ioParam.page + 1;
+								ExtApp.ajax('../club?page='+ioParam.page+'&size='+ioParam.size,null,'GET',function(args){
+									var da=Ext.decode(args[2].responseText,true);
+									ExtApp.storeBy('club',null,da.items);
+									me.down('#currentPage').setValue(ioParam.page);
+								});
+							}
+						}}
+						,{xtype: 'button', text: '＞＞', handler: function(){
+							if (ioParam.page < ioParam.totalPage){
+								ioParam.page = ioParam.totalPage;
+								ExtApp.ajax('../club?page='+ioParam.page+'&size='+ioParam.size,null,'GET',function(args){
+									var da=Ext.decode(args[2].responseText,true);
+									ExtApp.storeBy('club',null,da.items);
+									me.down('#currentPage').setValue(ioParam.page);
+								});
+							}
+						}}
+						,{xtype: 'button', itemId: 'totalPage'}
+					]
+				}
+			],
 			autoScroll:true,
 			store: ExtApp.storeBy('club',{fields:['id', 'name']}, null),
 			columns: [
@@ -62,10 +112,15 @@ function(me) {
 //		console.log('onLoad uxp ' , V.JSO(V.VER[2]) , V.EUC({idx:[2,3]}) , V.ARR('','FALSE') );
 //		
 //		V.FORA(new Date,function(ar){console.log(ar.v)});
-		
-		ExtApp.ajax('../club?page=1&size=1',null,'GET',function(args){
+		ioParam.page = 1;
+		ioParam.size = 1;
+		ExtApp.ajax('../club?page='+ioParam.page+'&size='+ioParam.size,null,'GET',function(args){
 			var da=Ext.decode(args[2].responseText,true);
-			ExtApp.storeBy('club',null,da);
+			ExtApp.storeBy('club',null,da.items);
+			//总页数
+			ioParam.totalPage = V.CINT(da.total / ioParam.size,1) + ((da.total % ioParam.size)===0?0:1);
+			that.down('#currentPage').setValue(ioParam.page);
+			that.down('#totalPage').setText('共' + ioParam.totalPage + '页');
 		});
 	}
 	,onCloseMe=function(that,btn) {
