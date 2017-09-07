@@ -4,14 +4,14 @@ function(){
 		expanded: true,
 		children: [
 			{
-				text: 'Applications',
+				text: '资料',
 				expanded: true,
 				icon: '../img/red_gallerylink.gif',
 				modified: '1/15/2012',
 				size: 0,
 				permissions: 'drwxrwxr-x+',
 				children: [
-					{ text: 'Adobe Fireworks CS6', modified: '7/25/2011', size: 34052, permissions: 'drwxrwxr-x@', leaf: true },
+					{ text: 'Adobe Fireworks CS6', modified: '7/25/2011', size: 34052, permissions: 'drwxrwxr-x@', leaf: true, action: 'App.view.football.DemoYaUxp' },
 					{ text: 'Ext Js', modified: '12/13/2012', size: 3592, permissions: 'drwxr-xr-x', leaf: true },
 					{ text: 'Mail.app', modified: '9/27/2012', size: 1024, permissions: 'drwxr-xr-x', leaf: true }
 				]
