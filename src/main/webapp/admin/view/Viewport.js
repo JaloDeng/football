@@ -307,7 +307,7 @@ return{
 		};
 		
 		panelSide.store=ExtApp.storeBy('AppViewportPanelSide$TreeStore',{
-				fields: ['text', 'modified', 'size', 'permissions']
+				fields: ['text', 'modified', 'size', 'permissions', 'action']
 			},null,true);
 		panelSide.listeners={afterlayout:function(cmp){
 				if(!cmp.uxReadyLayout){
@@ -324,6 +324,10 @@ return{
 						ExtApp.storeBy('AppViewportPanelSide$TreeStore',null,da.root,true);
 					});
 				}
+			}
+			,itemclick: function(el, record) {
+				console.log(record);
+				ExtApp.uxOpenToTab(record);
 			}
 		};
 		
