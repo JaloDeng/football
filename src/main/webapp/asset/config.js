@@ -18,10 +18,10 @@
 
 	ExtApp['REL_ROOT_PATH']='../';
 
-//	ExtApp.DEBUG_MODE=true;
-//	ExtApp.DEBUG_MODE=ExtApp.DEBUG_MODE && (/^((localhost|127\.0\.0\.1|\[::1\])(:\d+)?)$/i.test(location.host));
+	ExtApp.DEBUG_MODE=true;
+	ExtApp.DEBUG_MODE=ExtApp.DEBUG_MODE && (/^((localhost|127\.0\.0\.1|\[::1\])(:\d+)?)$/i.test(location.host));
 	
-	ExtApp.DEBUG_MODE=false;
+//	ExtApp.DEBUG_MODE=false;
 
 	//在extjs加载完成前显示效果的js文件；--将0改为1启用
 	ExtApp['NILFX']=!1?'':ExtApp['REL_ROOT_PATH']+'asset/loading.js';
