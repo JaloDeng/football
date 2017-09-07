@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>用户登录</title>
+	<meta name="generator" content="用户登录_{{APP_CAPTION}}" id="HTML_FILE_TITLE"/>
+
+	<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+
+	<script type="text/javascript" charset="UTF-8" src="../asset/config.js"></script>
+
+<script type="text/javascript">/*<![CDATA[*/
+!function(window){
+	var ExtApp=window.ExtApp=window.ExtApp||{}
+	;
+	ExtApp.HTML_FILE_NAME="login.html";
+	useSrc = function(srcArray, chkFn, isCss, ms) {
+		var i, t = ms || 100,
+			getTp = isCss ? function(src) {
+				return '<link rel="stylesheet" type="text/css" href=":0" />'.replace(/:0/, src)
+			} : function(src) {
+				return '<script type="text/javascript" charset="UTF-8" src=":0"><'.replace(/:0/, src) + '/script>'
+			},
+			timeFn = function() {
+				if (chkFn) {
+					if (!chkFn()) setTimeout(timeFn, t)
+				}
+			},
+			sc = [];
+		for (i = 0; i < srcArray.length; i++) {
+			sc.push(getTp(srcArray[i]))
+		}
+		document.write(sc.join(''));
+		if (chkFn) setTimeout(timeFn, t);
+	};
+	
+	ExtApp.NO_PNG_32BIT=((function(){
+		var i,l=navigator.userAgent,f=(i=l.match(/MSIE (\d\.\d)/i))?i[1]:!1;return f&&"8.0">=f&&f>="1.0"
+	})());
+	
+	
+	if(ExtApp.NO_PNG_32BIT){
+		useSrc([
+			ExtApp['REL_ROOT_PATH']+"asset/extjs/ext-theme-neptune/ext-theme-neptune-all-debug.css".replace(/\-debug/g,ExtApp.DEBUG_MODE?'-debug':'')
+		],0,1)
+	}
+
+}(this);
+/*]]>*/</script>
+
+<style type="text/css">/*<![CDATA[*/
+html,body{margin:0 auto;background-color:#fff}
+.qz em{text-align:right;color:#def;font-size:12px;display: block}
+.qz div{background-color:#fff;margin:8% auto;width:50%;min-width:400px;border:1px solid #8bf}
+.qz div p{background-color:#def;margin:0;padding:8px}
+.qz div p,.qz div pre{font:400 16px/16px simsun}
+/*]]>*/
+</style>
+
+</head>
+<body>
+<div id="stateLoadingJsLibs" class="qz">
+<em>&#32676;&#24535;&#26143;&#32852;&#65293;&#24191;&#19996;&#20315;&#23665;</em>
+<div><p>欢迎使用 {{APP_CAPTION}} ！</p><pre>
+	
+	正在载入界面，请您稍等。
+	</pre></div>
+<p>&#160;</p>
+</div>
+
+
+<script type="text/javascript" charset="UTF-8" src="../asset/common.js"></script>
+
+<script type="text/javascript">/*<![CDATA[*/
+!function(window,undefined){
+	var ExtApp=window.ExtApp=window.ExtApp||{},relRootPath=ExtApp['REL_ROOT_PATH']
+		,js1=relRootPath+"asset/extjs-debug/ext-all-debug.js"
+		,js2=relRootPath+"asset/extjs/ext-theme-neptune-dev.js"
+		,js3=relRootPath+"asset/extjs/ext-lang-zh_CN.js"
+		,fn=function(){useSrc([js1],function(){if(window.Ext&&window.Ext.onReady){
+			V.JS([js2,js3],function(){
+				Ext.onReady(function(){
+					if(ExtApp.NO_PNG_32BIT)Ext.BLANK_IMAGE_URL=relRootPath+"asset/spacer.gif";
+					Ext.Ajax.request({
+						url:'./login.js',
+						callback:function(options, success, response){
+							ExtApp['serverDate']=new Date(response.getResponseHeader("Date"));
+							V('stateLoadingJsLibs').style.display='none';
+							Ext.globalEval(response.responseText);
+						}
+					})
+				})
+			})
+		;return 1}else{return 0}
+		});
+	}
+	;
+	if(!ExtApp.DEBUG_MODE){
+		js1=js1.replace(/\-debug/g,'');
+	};
+
+	if(ExtApp['NILFX']){
+		useSrc([ExtApp['NILFX']]);
+		ExtApp.NILFXFN=fn
+	}else{
+		fn()
+	}
+
+}(this);
+/*]]>*/</script>
+</body>
+</html>
