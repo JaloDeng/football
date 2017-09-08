@@ -7,6 +7,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +25,17 @@ public class ClubService {
 	private ClubRepository clubRepository;
 	
 	@Transactional(readOnly = true)
-	public Map<String, Object> findAll(Integer page, Integer size) {
+	public Map<String, Object> findAll(Integer page, Integer size, List<Order> orders) {
 		
 		Map<String, Object> returnMap = new HashMap<>();
 		List<Club> modelList = new ArrayList<>();
 		
-		clubRepository.findAll(new PageRequest(page - 1, size)).forEach(entityList -> {
+//		Sort sort = new Sort(Direction.DESC, "id");
+		
+//		new Order(Direction.DESC, "id");
+		Sort sort = new Sort(orders);
+		
+		clubRepository.findAll(new PageRequest(page - 1, size, sort)).forEach(entityList -> {
 			Club model = new Club();
 			
 			model.setId(entityList.getId());
@@ -35,6 +44,16 @@ public class ClubService {
 			
 			modelList.add(model);
 		});
+		
+//		clubRepository.findAll(new PageRequest(page - 1, size)).forEach(entityList -> {
+//			Club model = new Club();
+//			
+//			model.setId(entityList.getId());
+//			model.setName(entityList.getName());
+//			model.setBelong(entityList.getBelong());
+//			
+//			modelList.add(model);
+//		});
 		
 		returnMap.put("items", modelList);
 		returnMap.put("total", clubRepository.count());
