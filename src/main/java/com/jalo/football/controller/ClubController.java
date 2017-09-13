@@ -1,8 +1,10 @@
 package com.jalo.football.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,9 +27,9 @@ public class ClubController {
 
 	@GetMapping("")
 	public @ResponseBody Map<String, Object> findAll(@RequestParam(required = false) Integer page,
-			@RequestParam(required = false) Integer size) throws Exception {
+			@RequestParam(required = false) Integer size, @RequestParam(required = false) List<Order> sort) throws Exception {
 		
-		return clubService.findAll(page, size);
+		return clubService.findAll(page, size, sort);
 	}
 
 	@GetMapping("/{id}")
