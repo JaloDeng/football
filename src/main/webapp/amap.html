@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>黑仔地图</title>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.0&key=ca531846e8da8a618715a1364483e27f"></script>
+    <style type="text/css">
+      body,html,#container{
+        height: 100%;
+        margin: 0px;
+      }
+      #search {
+          background-color: #ddf;
+          color: #333;
+          border: 1px solid silver;
+          box-shadow: 3px 4px 3px 0px silver;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          border-radius: 5px;
+          overflow: hidden;
+          line-height: 20px;
+      }
+      #search input[type="text"] {
+          height: 25px;
+          border: 0;
+          padding-left: 5px;
+          width: 280px;
+          border-radius: 3px;
+          outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" tabindex="0"></div>
+    <div id="search">
+        <input id="input" type="text" value="请输入关键字：(选定后搜索)" onfocus='this.value=""'/>
+        <div id = 'message'></div>
+    </div>
+    <script type="text/javascript">
+    
+	    var input = document.getElementById('input');
+	    var message = document.getElementById('message');
+	    
+	    // 定义地图
+        var map = new AMap.Map('container',{
+            resizeEnable: true,
+            zoom: 11,
+            keyboardEnable: false
+        });
+
+        // 添加插件
+        map.plugin(['AMap.Autocomplete', 'AMap.Geocoder', 'AMap.Geolocation', 'AMap.PlaceSearch', 'AMap.ToolBar'], function() {
+            //获取浏览器当前位置
+        	geolocation = new AMap.Geolocation({
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                zoomToAccuracy: true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition();
+
+            // 定义标记
+            var marker = new AMap.Marker({
+                map:map,
+                bubble:true
+            });
+
+        	//搜索功能
+            var placeSearch = new AMap.PlaceSearch({
+					map: map
+                });
+         	//输入提示
+        	var autoOptions = {
+        	        input: 'input'//使用联想输入的input的id
+                };
+        	autocomplete= new AMap.Autocomplete(autoOptions);
+        	//添加选择结果列表事件
+            AMap.event.addListener(autocomplete, "select", function(e){
+		            //TODO 针对选中的poi实现自己的功能
+		            placeSearch.setCity(e.poi.adcode);
+		            placeSearch.search(e.poi.name);
+				});
+			
+            //添加点击搜索结果的标记事件
+            AMap.event.addListener(placeSearch, "markerClick", function(e){
+            		if (e && e.data) {
+            			input.value = e.data.address;
+            			message.innerHTML = '经度 : ' + e.data.location.lng + ' 纬度 : ' + e.data.location.lat;
+            		}
+            	});
+            
+	        var geocoder = new AMap.Geocoder({
+		        });
+        	//点击地图触发事件
+        	map.on('click',function(e){
+	                marker.setPosition(e.lnglat);
+	                geocoder.getAddress(e.lnglat,function(status,result){
+	                  if(status=='complete'){
+	                     var lngLat = marker.getPosition().toString().split(",");
+	                	 input.value = result.regeocode.formattedAddress;
+	                     message.innerHTML = '经度 : ' + lngLat[0] + ' 纬度 : ' + lngLat[1];
+	                  }else{
+	                     message.innerHTML = '无法获取地址';
+	                  }
+	                });
+	            });
+            
+			//添加缩放比例尺
+            map.addControl(new AMap.ToolBar());
+        });
+    </script>
+  </body>
+</html>
